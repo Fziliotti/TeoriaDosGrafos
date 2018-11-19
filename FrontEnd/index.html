@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <title>Trabalho de Teoria dos Grafos</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.29.1/dist/sweetalert2.min.css">
+
+</head>
+
+<body>
+
+    <header class="jumbotron text-center bg-info text-light ">
+        <h1 class="display-3">Trabalho Teoria dos grafos</h1>
+        <p class="lead">Professor Paulo Henrique Ribeiro Gabriel</p>
+        <hr class="my-2 bg-light">
+        <p>Desenvolvedores: Marcos Victor, Fabrício Ziliotti, Guilherme Raimondi e Matheus Albano</p>
+        <p class="lead">
+            <div class="input-group mb-3 w-50 mx-auto">
+                <input id="caminhoGrafo" type="text" maxlength="38" class="form-control" value="files/grafo-teste.txt"
+                    placeholder="ex: files/grafo-teste.txt">
+                <div class="input-group-append d-none d-md-block">
+                    <button id="btnRequi" class=" btn btn-success btn-md" type="submit">Analisar</button>
+                </div>
+            </div>
+        </p>
+
+    </header>
+
+    <section>
+        <div class="container ">
+            <div id="loader"></div>
+            <div class="row">
+                <div class="col bg-light text-dark ">
+                    <div id="respostas" class="d-flex flex-column"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    </div>
+
+
+    <script src="front.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.29.1/dist/sweetalert2.all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+body{
+    margin-bottom: 2rem;
+}
+#respostas>div {
+    width: 100%;
+    text-transform: uppercase;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-bottom: 1.2px solid #3498db;
+    transition: 0.3s all ease-in-out;
+}
+
+@media (max-width: 600px ){
+
+}
+
+#respostas>header {
+    width: 100%;
+    text-transform: uppercase;
+    padding: 1rem 0;
+    margin: 1rem auto;
+    text-align: center;
+    font-size: 1.5rem;
+    color:#3498db;
+    border-bottom: 1.2px solid #3498db;
+    transition: 0.3s all ease-in-out;
+}
+
+#loader {
+    border: 8px solid #bbb;
+    /* Light grey */
+    border-top: 8px solid #3498db;
+    /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    display: block;
+    margin: 1rem auto;
+    display: none;
+    transition: .4s all ease-in-out;
+
+}
+
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
