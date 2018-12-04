@@ -48,6 +48,7 @@ async function leGrafo(req, res) {
     objGrafo.graphDensity =  graph.graphDensity();
     objGrafo.avGroupCoef = graph.averageGroupingCoefficient();
     objGrafo.neighbours = graph.qtdNeighbours(5);
+    objGrafo.printAdjList = graph.printAdjList();
   
 
     //OBJETO RESPOSTA DA REQUISICAO

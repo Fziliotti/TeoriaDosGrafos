@@ -1,11 +1,24 @@
 class Graph {
     constructor(vertexes) {
-        this.numEdges = 0
-        this.vertexes = new Set()
-        this.edges = new Map()
+        this.numEdges = 0 //arestas
+        this.vertexes = new Set() // vertices que nao se repetem
+        this.edges = new Map() //lista de adjacencias
         vertexes.map(vertex => {
             this.edges.set(vertex, new Set())
         })
+    }
+
+    printAdjList() {
+        if (this.edges.keys.length < 20) {
+            var texto = "";
+            this.edges.forEach((valor, chave) => {
+                var valores = [...valor].join(', ')
+                texto += `${chave} => ${valores} <br>`
+            })
+            return texto;
+        }else{
+            return "O grafo analisado possui muitos vértices e arestas!"
+        }
     }
 
     insertEdge(n1, n2) {
@@ -34,7 +47,7 @@ class Graph {
 
     vertexDegree(vertex) {
         if (!this.vertexes.has(vertex))
-            return 0;
+            throw new Error("Vertice não existente no conjunto de vertices do grafo")
         // como vertexes eh um Set, ele nao aceita usar reduce,logo temos que transformar o set para array
         // no reduce o primeiro parametro é a funcao e o segundo sera o valor inicial do acumulador
         return [...this.vertexes].reduce((b, a) => b + (this.existEdge(vertex, a) ? 1 : 0), 0)
@@ -59,12 +72,17 @@ class Graph {
 
     }
 
-    
+
     qtdNeighbours(vertex) {
+        if (!this.vertexes.has(vertex))
+            throw new Error("Vertice não existente no conjunto de vertices do grafo")
         return this.neighbours(vertex).size
     }
 
     neighboursConnectedPairs(vertex) {
+        if (!this.vertexes.has(vertex))
+            throw new Error("Vertice não existente no conjunto de vertices do grafo")
+
         let count = 0
         let neighbours = this.neighbours(vertex)
         neighbours.forEach(neighbour => {
@@ -78,6 +96,9 @@ class Graph {
     }
 
     groupingCoefficient(vertex) {
+        if (!this.vertexes.has(vertex))
+            throw new Error("Vertice não existente no conjunto de vertices do grafo")
+
         let numNeighbours = this.qtdNeighbours(vertex)
         let coef = 0
         if (numNeighbours > 1) {
@@ -97,6 +118,9 @@ class Graph {
     }
 
     isExtremeVertice(vertex) {
+        if (!this.vertexes.has(vertex))
+            throw new Error("Vertice não existente no conjunto de vertices do grafo")
+
         return (this.vertexDegree(vertex) === 1)
     }
 

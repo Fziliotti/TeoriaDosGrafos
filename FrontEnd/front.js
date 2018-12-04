@@ -4,6 +4,7 @@ const INPUTELEMENT = document.getElementById('caminhoGrafo')
 // const INPUTELEMENT = $('#caminhoGrafo')
 const LOADER = document.getElementById('loader')
 // const LOADER = $('#loader')
+const BTNPRINT = document.getElementById('btnPrint')
 
 
 
@@ -32,26 +33,43 @@ function FazerRequisicao() {
                 //após mostrar as informações, esconder o loader
                 LOADER.style.display = "none"
             })
-            .catch(e => { 
-                swal({type: 'error', title: 'Opss...', text: "ERRO: " +e.message})
+            .catch(e => {
+                swal({
+                    type: 'error',
+                    title: 'Opss...',
+                    text: "ERRO: " + e.message
+                })
                 LOADER.style.display = "none"
-             } 
-            )
+
+            })
     } else {
         swal({
             type: 'error',
             title: 'Oops...',
             text: 'Digite alguma coisa na caixa de texto!',
-          })
-          INPUTELEMENT.focus()
+        })
+        INPUTELEMENT.focus()
+
     }
 
 }
 
+BTNPRINT.addEventListener('click', () => {
+
+    document.onkeydown = function (e) {
+        var code = e.keyCode || e.which;
+        if (e.ctrlKey && (code == 80 || code == 112)) {
+            e.preventDefault && e.preventDefault();
+
+        }
+    }
+
+})
 
 function mostrarInfosDoGrafo(r) {
-  var resp  = document.getElementById('respostas')
-  resp.innerHTML = `
+    BTNPRINT.style.display = "block"
+    var resp = document.getElementById('respostas')
+    resp.innerHTML = `
     <header>
         GRAFO DO ARQUIVO ${r.grafo.arquivo}
     </header>
@@ -65,6 +83,10 @@ function mostrarInfosDoGrafo(r) {
 
     <div>
         O grau do vértice 2 é ${r.grafo.vertexDegree}.
+    </div>
+
+    <div>
+        A lista de adjacências do grafo é: <br> ${r.grafo.printAdjList} 
     </div>
 
     <div>

@@ -1,5 +1,6 @@
 
 const API = require("./graphApi") 
+
 API.parseGraph("./files/grafo-teste.txt")
     .then((graph) => {
         console.log(graph)
@@ -10,6 +11,7 @@ API.parseGraph("./files/grafo-teste.txt")
         console.log("Grau do vertice "                   + graph.vertexDegree(2))
         console.log("Grau medio "                        + graph.mediumDegree())
         console.log("Densidade do grafo "                + graph.graphDensity())
+        console.log("lista de adjacencias: " + graph.printAdjList())
         console.log("Coeficiente de agrupamento medio: " + graph.averageGroupingCoefficient())
         console.log("Vizinhos do vertice 5: ")
 

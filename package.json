@@ -1,0 +1,25 @@
+{
+  "name": "teoriadosgrafos",
+  "version": "1.0.0",
+  "description": "Trabalho de teoria dos grafos",
+  "main": "teste.js",
+  "dependencies": {
+    "live-server": "^1.2.1",
+    "nodemon": "^1.18.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fziliotti/TeoriaDosGrafos.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fziliotti/TeoriaDosGrafos/issues"
+  },
+  "homepage": "https://github.com/Fziliotti/TeoriaDosGrafos#readme"
+}
