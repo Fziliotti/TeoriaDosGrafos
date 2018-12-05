@@ -43,7 +43,10 @@ async function leGrafo(req, res) {
         // ATRIBUTOS DO OBJETO RETORNADO COMO RESPOSTA
         objGrafo.arquivo = await path.substring(6);
         objGrafo.totalVertexes = await graph.totalVertexes();
-        // objGrafo.vertexDegree = graph.vertexDegree(2);
+        objGrafo.vertexDegree = graph.vertexDegree(2);
+
+        objGrafo.vertexDegrees =  graph.printVerticesDegrees();
+
         objGrafo.mediumDegree = await graph.mediumDegree();
         objGrafo.graphDensity = await graph.graphDensity();
         objGrafo.avGroupCoef = await graph.averageGroupingCoefficient();
@@ -63,7 +66,7 @@ async function leGrafo(req, res) {
         res.end(objGrafo); // a respota contem um objeto com os campos success e o grafo construido
 
     } catch (err) {
-        console.log("Erro no servidor:" + err);
+        console.log("Erro no servidor: " + err);
     }
 
 }

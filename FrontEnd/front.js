@@ -72,6 +72,7 @@ function mostrarInfosDoGrafo(r) {
         <header>
             GRAFO DO ARQUIVO ${r.grafo.arquivo}
         </header>
+
         <div>
             O grafo possui ${r.grafo.numEdges} arestas.
         </div>
@@ -81,11 +82,11 @@ function mostrarInfosDoGrafo(r) {
         </div>
 
         <div>
-            O grau do vértice 2 é ${r.grafo.vertexDegree}.
+            A lista de adjacências do grafo é: <br> ${r.grafo.printAdjList} 
         </div>
 
         <div>
-            A lista de adjacências do grafo é: <br> ${r.grafo.printAdjList} 
+            Os graus dos vértices são: <br> ${r.grafo.vertexDegrees}
         </div>
 
         <div>
@@ -103,6 +104,8 @@ function mostrarInfosDoGrafo(r) {
         <div>
             O número de componentes conexas é ${r.grafo.numCompConexas}.
         </div>
+
+        
 
       
        

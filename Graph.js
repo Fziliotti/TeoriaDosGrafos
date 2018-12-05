@@ -9,30 +9,42 @@ class Graph {
     }
 
     printAdjList() {
-        if (this.edges.keys.length < 20) {
             var texto = "";
             this.edges.forEach((valor, chave) => {
                 var valores = [...valor].join(', ')
                 texto += `${chave} => ${valores} <br>`
             })
             return texto;
-        }else{
-            return "O grafo analisado possui muitos vértices e arestas!"
-        }
+    }
+
+    printVerticesDegrees() {
+            var result = ""; //Sera printado no frontEnd
+
+            var arrayVertexDegress =  [...this.vertexes].map( elem => {
+                return {index: elem, grau : this.vertexDegree(elem)}
+            })
+
+            arrayVertexDegress.forEach((vertex) => {
+                result += `[${vertex.index}]: grau ${vertex.grau}. <br>` 
+            })
+            return result;
     }
 
     insertEdge(n1, n2) {
         if (!this.existEdge(n1, n2)) {
             console.log("foi inserido " + n1 + " =>" + n2)
+            //adiciona aresta nos dois sentidos
             this.edges.get(n1).add(n2)
             this.edges.get(n2).add(n1)
+
             this.numEdges++
+
             this.vertexes.add(n1)
             this.vertexes.add(n2)
             return this //somente para poder encadear funcoes após usar esse metodo
         }
     }
-
+    // Verifica se existe determinado vertice
     existEdge(n1, n2) {
         return this.edges.get(n1).has(n2)
     }
@@ -65,13 +77,13 @@ class Graph {
         return Math.floor(2 * numArestas / numVertices * (numVertices - 1))
     }
 
+    // retorna os vizinhos de determinado vertice
     neighbours(vertex) {
         if (!this.vertexes.has(vertex))
             throw new Error("Vertice não existente no conjunto de vertices do grafo")
         return this.edges.get(vertex)
 
     }
-
 
     qtdNeighbours(vertex) {
         if (!this.vertexes.has(vertex))
@@ -107,8 +119,6 @@ class Graph {
         return parseFloat(coef)
     }
 
-
-
     averageGroupingCoefficient() {
         let totalCoeficient = 0
         this.vertexes.forEach(vertex => {
@@ -116,6 +126,9 @@ class Graph {
         })
         return (parseFloat(totalCoeficient) / this.totalVertexes()).toFixed(2)
     }
+
+
+
 
     isExtremeVertice(vertex) {
         if (!this.vertexes.has(vertex))
