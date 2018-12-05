@@ -10,7 +10,7 @@ const HEADERS = {
 
 // configuração do servidor que será levantado na porta 80
 const app = http.createServer(onConnection);
-app.listen(PORTA); //
+app.listen(PORTA);
 app.on("listening", () => console.log("Escutando na porta " + PORTA));
 
 // callback  que vai ler o grafo de maneira assincrona e retorna o grafo 
@@ -29,35 +29,41 @@ async function leGrafo(req, res) {
     let path = req.url; //pega url da requisicao
     path = path.substring(1); // tira a Barra '/'
     path = decodeURIComponent(path); //decodifica a URI, tirando os caracteres especiais
+    try {
+        let graph = await graphApi.parseGraph(path); // grafo espera o retorno do parseGraph
+        let objGrafo = {...graph};
+        objGrafo.vertexes = [...objGrafo.vertexes]; // transforma o Set em Array
+        
+        // gambiarra abaixo
+        objGrafo._edges = objGrafo.edges;
+        objGrafo.edges = new Object();
+        [...objGrafo._edges.keys()].forEach(k => objGrafo.edges[k] = [...objGrafo._edges.get(k)]);
+        delete objGrafo._edges;
 
-    let graph = await graphApi.parseGraph(path); // grafo espera o retorno do parseGraph
+        // ATRIBUTOS DO OBJETO RETORNADO COMO RESPOSTA
+        objGrafo.arquivo = await path.substring(6);
+        objGrafo.totalVertexes = await graph.totalVertexes();
+        // objGrafo.vertexDegree = graph.vertexDegree(2);
+        objGrafo.mediumDegree = await graph.mediumDegree();
+        objGrafo.graphDensity = await graph.graphDensity();
+        objGrafo.avGroupCoef = await graph.averageGroupingCoefficient();
+        // objGrafo.neighbours = graph.qtdNeighbours(5);
+        objGrafo.printAdjList = await graph.printAdjList();
+        // objGrafo.numCompConexas = await graphApi.numCompConexas(graph);
+       
 
-    let objGrafo = {...graph};
-    objGrafo.vertexes = [...objGrafo.vertexes]; // transforma o Set em Array
-    objGrafo._edges = objGrafo.edges;
+        //OBJETO RESPOSTA DA REQUISICAO
+        objGrafo = {
+            success: true,
+            grafo: objGrafo
+        };
 
-    objGrafo.edges = new Object();
-    [...objGrafo._edges.keys()].forEach(k => objGrafo.edges[k] = [...objGrafo._edges.get(k)]);
-    delete objGrafo._edges;
+        objGrafo = JSON.stringify(objGrafo);
+        res.writeHead(200, HEADERS);
+        res.end(objGrafo); // a respota contem um objeto com os campos success e o grafo construido
 
-    // ATRIBUTOS DO OBJETO RETORNADO COMO RESPOSTA
-    objGrafo.arquivo = path.substring(6);
-    objGrafo.totalVertexes = graph.totalVertexes();
-    objGrafo.vertexDegree = graph.vertexDegree(2);
-    objGrafo.mediumDegree = graph.mediumDegree();
-    objGrafo.graphDensity =  graph.graphDensity();
-    objGrafo.avGroupCoef = graph.averageGroupingCoefficient();
-    objGrafo.neighbours = graph.qtdNeighbours(5);
-    objGrafo.printAdjList = graph.printAdjList();
-  
+    } catch (err) {
+        console.log("Erro no servidor:" + err);
+    }
 
-    //OBJETO RESPOSTA DA REQUISICAO
-    objGrafo = {
-        success: true, 
-        grafo: objGrafo
-    };
-
-    objGrafo = JSON.stringify(objGrafo);
-    res.writeHead(200, HEADERS);
-    res.end(objGrafo);
 }

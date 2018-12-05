@@ -18,28 +18,37 @@
 
 <body>
 
-    <header class="jumbotron text-center bg-info text-light ">
+    <header id="header" class="jumbotron text-center bg-info text-light ">
         <h1 class="display-3">Trabalho Teoria dos grafos</h1>
         <p class="lead">Professor Paulo Henrique Ribeiro Gabriel</p>
         <hr class="my-2 bg-light">
         <p>Desenvolvedores: Marcos Victor, Fabrício Ziliotti, Guilherme Raimondi e Matheus Albano</p>
         <p class="lead">
             <div class="input-group mb-3 w-50 mx-auto">
-                <input id="caminhoGrafo" type="text" maxlength="38" class="form-control" value="files/grafo-teste.txt"
-                    placeholder="ex: files/grafo-teste.txt">
+                <!-- <input id="caminhoGrafo" type="text" maxlength="38" class="form-control" value="files/grafo-teste.txt"
+                    placeholder="ex: files/grafo-teste.txt"> -->
+                    <select id="caminhosDosGrafos" class="form-control" required>
+                        <option>files/grafo-teste.txt</option>
+                        <option>files/ca-AstroPh.txt</option>
+                        <option>files/ca-CondMat.txt</option>
+                        <option>files/ca-HepPh.txt</option>
+                        <option>files/ca-HepTh.txt</option>
+                        <option>files/email-Enron.txt</option>
+                        <option>files/email-EuAll.txt</option>
+                      </select>
                 <div class="input-group-append d-none d-md-block">
                     <button id="btnRequi" class=" btn btn-success btn-md" type="submit">Analisar</button>
                 </div>
             </div>
         </p>
     </header>
-    
+
     <section>
         <div class="container ">
             <div id="loader"></div>
             <div class="row">
                 <div class="col bg-light text-dark ">
-                    <button onclick="window.print()"  id="btnPrint" class=" btn btn-primary float-right my-2">
+                    <button onclick="printarpagina()" id="btnPrint" class=" btn btn-primary float-right my-3">
                         <i style="font-size:20px; color:white" class="fa fa-print"></i>
                     </button>
                     <div id="respostas" class="d-flex flex-column"></div>

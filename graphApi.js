@@ -53,8 +53,8 @@ function bfs(graph, rootVertex, visited){
     queue.push(rootVertex)  //insira a raiz na fila
     while(queue.length){
         let firstVertex = queue[0] //tira o primeiro elemento e o retorna
-        console.log("firstVertex: " + firstVertex)
-        console.log( graph.edges.get(firstVertex))                
+        // console.log("firstVertex: " + firstVertex)
+        // console.log( graph.edges.get(firstVertex))                
         graph.edges.get(firstVertex).forEach(vertex => {
             if(!visited.includes(vertex)){
                 visited.push([firstVertex, vertex])
@@ -69,6 +69,7 @@ function bfs(graph, rootVertex, visited){
 }
 
 function numCompConexas(graph){
+    console.log("Rodando função numCompConexas")
     let rootQueue = new Set()
     graph.vertexes.forEach(elem => rootQueue.add(elem))
 

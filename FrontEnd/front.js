@@ -1,25 +1,27 @@
 const BTNREQUI = document.getElementById('btnRequi')
 // const BTNREQUI = $('#btnRequi')
-const INPUTELEMENT = document.getElementById('caminhoGrafo')
+const INPUTELEMENT = document.getElementById('caminhosDosGrafos')
 // const INPUTELEMENT = $('#caminhoGrafo')
 const LOADER = document.getElementById('loader')
 // const LOADER = $('#loader')
 const BTNPRINT = document.getElementById('btnPrint')
 
+const HEADER = document.getElementById('header')
 
 
 // LISTENINGS DO INPUT
 BTNREQUI.addEventListener('click', FazerRequisicao)
 
-INPUTELEMENT.addEventListener('keyup', function (e) {
-    var key = e.which || e.keyCode
-    if (key == 13) {
-        FazerRequisicao()
-    }
-})
+// INPUTELEMENT.addEventListener('keyup', function (e) {
+//     var key = e.which || e.keyCode
+//     if (key == 13) {
+//         FazerRequisicao()
+//     }
+// })
+
 
 function FazerRequisicao() {
-    var caminhoGrafo = INPUTELEMENT.value.trim() //retirar os espaços do inicio e final
+    var caminhoGrafo = INPUTELEMENT.value //retirar os espaços do inicio e final
     if (caminhoGrafo) {
         //se o input for valido, mostrar o loader
         LOADER.style.display = "block"
@@ -54,51 +56,56 @@ function FazerRequisicao() {
 
 }
 
-BTNPRINT.addEventListener('click', () => {
+function printarpagina() {
+    HEADER.style.display = "none"
+    requestAnimationFrame(() => {
+        window.print()
+        HEADER.style.display = "block"
+    })
 
-    document.onkeydown = function (e) {
-        var code = e.keyCode || e.which;
-        if (e.ctrlKey && (code == 80 || code == 112)) {
-            e.preventDefault && e.preventDefault();
-
-        }
-    }
-
-})
+}
 
 function mostrarInfosDoGrafo(r) {
     BTNPRINT.style.display = "block"
     var resp = document.getElementById('respostas')
     resp.innerHTML = `
-    <header>
-        GRAFO DO ARQUIVO ${r.grafo.arquivo}
-    </header>
-    <div>
-        O grafo possui ${r.grafo.numEdges} arestas.
-    </div>
+        <header>
+            GRAFO DO ARQUIVO ${r.grafo.arquivo}
+        </header>
+        <div>
+            O grafo possui ${r.grafo.numEdges} arestas.
+        </div>
 
-    <div>
-        O grafo possui ${r.grafo.totalVertexes} vértices.
-    </div>
+        <div>
+            O grafo possui ${r.grafo.totalVertexes} vértices.
+        </div>
 
-    <div>
-        O grau do vértice 2 é ${r.grafo.vertexDegree}.
-    </div>
+        <div>
+            O grau do vértice 2 é ${r.grafo.vertexDegree}.
+        </div>
 
-    <div>
-        A lista de adjacências do grafo é: <br> ${r.grafo.printAdjList} 
-    </div>
+        <div>
+            A lista de adjacências do grafo é: <br> ${r.grafo.printAdjList} 
+        </div>
 
-    <div>
-        O grau médio do grafo é ${r.grafo.mediumDegree}.
-    </div>
+        <div>
+            O grau médio do grafo é ${r.grafo.mediumDegree}.
+        </div>
 
-    <div>
-        A densidade do grafo é ${r.grafo.graphDensity}.
-    </div>
+        <div>
+            A densidade do grafo é ${r.grafo.graphDensity}.
+        </div>
 
-    <div>
-        O Coeficiente de agrupamento médio é ${r.grafo.avGroupCoef}.
-    </div>
+        <div>
+            O Coeficiente de agrupamento médio é ${r.grafo.avGroupCoef}.
+        </div>
+
+        <div>
+            O número de componentes conexas é ${r.grafo.numCompConexas}.
+        </div>
+
+      
+       
   `
+
 }
