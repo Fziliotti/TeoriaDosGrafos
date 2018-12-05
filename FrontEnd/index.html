@@ -25,8 +25,6 @@
         <p>Desenvolvedores: Marcos Victor, Fabrício Ziliotti, Guilherme Raimondi e Matheus Albano</p>
         <p class="lead">
             <div class="input-group mb-3 w-50 mx-auto">
-                <!-- <input id="caminhoGrafo" type="text" maxlength="38" class="form-control" value="files/grafo-teste.txt"
-                    placeholder="ex: files/grafo-teste.txt"> -->
                     <select id="caminhosDosGrafos" class="form-control" required>
                         <option>files/grafo-teste.txt</option>
                         <option>files/ca-AstroPh.txt</option>
@@ -45,7 +43,8 @@
 
     <section>
         <div class="container ">
-            <div id="loader"></div>
+            <span id="loader"></span>
+            
             <div class="row">
                 <div class="col bg-light text-dark ">
                     <button onclick="printarpagina()" id="btnPrint" class=" btn btn-primary float-right my-3">
@@ -58,17 +57,7 @@
     </section>
 
 
-
     <script src="front.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.29.1/dist/sweetalert2.all.min.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
-        crossorigin="anonymous"></script> -->
 </body>
-
 </html>

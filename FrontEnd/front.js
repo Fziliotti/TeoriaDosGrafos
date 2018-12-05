@@ -104,11 +104,6 @@ function mostrarInfosDoGrafo(r) {
         <div>
             O número de componentes conexas é ${r.grafo.numCompConexas}.
         </div>
-
-        
-
-      
-       
   `
 
 }
