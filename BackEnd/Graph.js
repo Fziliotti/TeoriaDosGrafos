@@ -59,7 +59,8 @@ class Graph {
 
     vertexDegree(vertex) {
         if (!this.vertexes.has(vertex))
-            throw new Error("Vertice não existente no conjunto de vertices do grafo")
+            throw new Error("Vertice "+ vertex + " não existente no conjunto de vertices do grafo")
+
         // como vertexes eh um Set, ele nao aceita usar reduce,logo temos que transformar o set para array
         // no reduce o primeiro parametro é a funcao e o segundo sera o valor inicial do acumulador
         return [...this.vertexes].reduce((b, a) => b + (this.existEdge(vertex, a) ? 1 : 0), 0)

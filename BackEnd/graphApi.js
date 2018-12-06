@@ -47,9 +47,11 @@ function compareFileGraph(path, graph) {
     })
 }
 
-function bfs(graph, rootVertex, visited){
+function bfs(graph, rootVertex, visitedVertexes){
     let queue = []
+    let visited = []
     visited.push(rootVertex) //marque a raiz
+    visitedVertexes.push(rootVertex)
     queue.push(rootVertex)  //insira a raiz na fila
     while(queue.length){
         let firstVertex = queue[0] //tira o primeiro elemento e o retorna
@@ -60,6 +62,7 @@ function bfs(graph, rootVertex, visited){
                 visited.push([firstVertex, vertex])
                 visited.push(vertex) //marque o vertice
                 queue.push(vertex)  //insire o vertice
+                visitedVertexes.push(vertex)
             } else if (queue.includes(vertex)){ 
                 visited.push([firstVertex, vertex])
             }
@@ -69,30 +72,19 @@ function bfs(graph, rootVertex, visited){
 }
 
 function numCompConexas(graph){
-    console.log("Rodando função numCompConexas")
-    let rootQueue = new Set()
-    graph.vertexes.forEach(elem => rootQueue.add(elem))
-
-    let quantity = 1
-    let rootVisited = [[]]  
+    let rootQueue = new Set(graph.vertexes)
+    let quantity = 0
+    let rootVisited = [] 
     rootQueue.forEach(vertex =>{
         let visited = []
+        if(!rootVisited.includes(vertex)){
+        ++quantity
         bfs(graph, vertex, visited)
-        rootVisited.push(visited)
-    })
-
-    // console.log(rootVisited)
-    rootVisited.forEach(bfsVisited =>{
-       let copyBfsVisited = bfsVisited
-       rootVisited.forEach(anotherBfsVisited => {
-            copyBfsVisited.filter(value => -1 !== anotherBfsVisited.indexOf(value))
-            if(copyBfsVisited.lenght == 0) quantity++
-            copyBfsVisited = bfsVisited
-        })
+        visited.forEach(elem => rootVisited.push(elem))
+        }
     })
     return quantity
-} 
-
+}
 
 module.exports = {
     parseFile,

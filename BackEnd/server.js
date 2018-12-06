@@ -53,7 +53,7 @@ async function leGrafo(req, res) {
         objGrafo.avGroupCoef = await graph.averageGroupingCoefficient();
         // objGrafo.neighbours = graph.qtdNeighbours(5);
         objGrafo.printAdjList = await graph.printAdjList();
-        // objGrafo.numCompConexas = await graphApi.numCompConexas(graph);
+        objGrafo.numCompConexas = await graphApi.numCompConexas(graph);
        
 
         //OBJETO RESPOSTA DA REQUISICAO
