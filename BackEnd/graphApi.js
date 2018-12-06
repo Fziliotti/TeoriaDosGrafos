@@ -1,6 +1,7 @@
 
 const Graph = require('./Graph')
 const fs = require('fs')
+const PriorityQueue = require('./priority-queue/PriorityQueue')
 
 // UMA PROMISE NUNCA DISPARA THROWS, PARA ISSO EXISTE O REJECT
 function parseFile(path) {
@@ -86,10 +87,58 @@ function numCompConexas(graph){
     return quantity
 }
 
+function dijkstra(graph, startVertex, finishVertex) {
+    const distances = [];
+    const visitedVertices = [];
+    const queue = new PriorityQueue();
+  
+    // Init all distances with infinity assuming that currently we can't reach
+    // any of the vertices except start one.
+    graph.vertexes.forEach((vertex) => {
+      distances[vertex] = Infinity;
+    });
+    distances[startVertex] = 0;
+    // Init vertices queue.
+    console.log(111)
+    queue.add(startVertex, distances[startVertex]);
+    console.log(222)
+    while (!queue.isEmpty()) {
+      const currentVertex =  queue.poll();
+  
+      graph.neighbours(currentVertex).forEach((neighbor) => {
+        // Don't visit already visited vertices.
+        if (!visitedVertices[neighbor]) {
+          // Update distances to every neighbor from current vertex.
+  
+          const existingDistanceToNeighbor = distances[neighbor];
+          const distanceToNeighborFromCurrent = distances[currentVertex] + 1;
+  
+          if (distanceToNeighborFromCurrent < existingDistanceToNeighbor) {
+            distances[neighbor] = distanceToNeighborFromCurrent;
+            // Change priority.
+            if (queue.hasValue(neighbor))
+              queue.changePriority(neighbor, distances[neighbor]);
+          }
+          // Add neighbor to the queue for further visiting.
+          if (!queue.hasValue(neighbor))
+            queue.add(neighbor, distances[neighbor]);
+        }
+      });
+      // Add current vertex to visited ones.
+      visitedVertices[currentVertex] = currentVertex;
+    }
+    
+    let resultDistances = new Array()
+    distances.forEach(elem => resultDistances.push(elem))
+    console.log("distances: " + resultDistances)
+    return resultDistances[finishVertex-1]
+  }
+
 module.exports = {
     parseFile,
     parseGraph,
     compareFileGraph,
     bfs,
-    numCompConexas
+    numCompConexas,
+    dijkstra
 }
