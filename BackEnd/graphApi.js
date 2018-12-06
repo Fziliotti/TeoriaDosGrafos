@@ -99,9 +99,7 @@ function numCompConexas(graph){
         });
         distances[startVertex] = 0;
         // Init vertices queue.
-        console.log(111)
         queue.add(startVertex, distances[startVertex]);
-        console.log(222)
         while (!queue.isEmpty()) {
         const currentVertex =  queue.poll();
     
@@ -147,11 +145,22 @@ function numCompConexas(graph){
             })
             sum+=max
         })
-        console.log("soma: "+ sum)
-        console.log("totalvertices: "+ graph.totalVertexes())
+
         return sum/graph.totalVertexes()
     }
 
+    function effectiveDiameter(graph){
+        let maxAll=0
+        graph.vertexes.forEach(vertex => {
+            let max = 0
+            dijkstra(graph,vertex).forEach(path => {
+                if(path>max) max = path
+            })
+            if (max>maxAll) maxAll = max
+        })
+        return maxAll
+
+    }
 
 
 module.exports = {
@@ -162,5 +171,6 @@ module.exports = {
     numCompConexas,
     dijkstra,
     bestPath,
-    averageEffectiveEccentricity
+    averageEffectiveEccentricity,
+    effectiveDiameter
 }

@@ -108,6 +108,10 @@ function mostrarInfosDoGrafo(r) {
         <div>
             A Excentricidade efetiva média é ${r.grafo.avEfecEcce}.
         </div>
+
+         <div>
+            O Diâmetro efetivo é ${r.grafo.efecctiveDiameter}.
+        </div>
   `
 
 }
