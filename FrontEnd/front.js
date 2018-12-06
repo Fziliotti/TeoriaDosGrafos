@@ -116,6 +116,10 @@ function mostrarInfosDoGrafo(r) {
         <div>
             O Raio efetivo é ${r.grafo.efecctiveRadius}.
         </div>
+
+        <div>
+            A Centralidade média é ${r.grafo.averageCentrality}.
+        </div>
   `
 
 }

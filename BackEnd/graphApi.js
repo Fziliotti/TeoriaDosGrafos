@@ -87,7 +87,7 @@ function numCompConexas(graph){
     return quantity
 }
 
-    function dijkstra(graph, startVertex, finishVertex) {
+    function dijkstra(graph, startVertex) {
         const distances = [];
         const visitedVertices = [];
         const queue = new PriorityQueue();
@@ -174,6 +174,16 @@ function numCompConexas(graph){
         return minAll
 
     }
+    function averageCentrality(graph){
+        let sumCentralities = 0
+        let numVertices = graph.totalVertexes() - 1
+        graph.vertexes.forEach(vertex =>{
+            let sumDist = 0
+            dijkstra(graph,vertex).forEach(path => sumDist += path )
+            sumCentralities+= numVertices/(sumDist/numVertices)
+        })
+        return (sumCentralities/numVertices).toFixed(2)
+    }
 
 
 module.exports = {
@@ -186,5 +196,6 @@ module.exports = {
     bestPath,
     averageEffectiveEccentricity,
     effectiveDiameter,
-    effectiveRadius
+    effectiveRadius,
+    averageCentrality
 }

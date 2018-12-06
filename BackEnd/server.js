@@ -57,6 +57,8 @@ async function leGrafo(req, res) {
         objGrafo.avEfecEcce = await graphApi.averageEffectiveEccentricity(graph);
         objGrafo.efecctiveDiameter = await graphApi.effectiveDiameter(graph);
         objGrafo.efecctiveRadius = await graphApi.effectiveRadius(graph);
+        objGrafo.averageCentrality = await graphApi.averageCentrality(graph);
+
         
 
 
