@@ -1,6 +1,7 @@
 // Importação de libs e arquivos externos
 const http = require("http");
-const graphApi = require("./graphApi");
+const graphApi = require("./GraphApi");
+const graphUtils = require("./GraphUtils");
 const PORTA = 80;
 // HEADER da Requisição
 const HEADERS = {
@@ -42,19 +43,23 @@ async function leGrafo(req, res) {
         delete objGrafo._edges;
 
         // ATRIBUTOS DO OBJETO RETORNADO COMO RESPOSTA
-        objGrafo.arquivo = await path.substring(6);
+        objGrafo.arquivo = await path.substring(9);
         objGrafo.totalVertexes = await graph.totalVertexes();
-        objGrafo.vertexDegree =  await graph.vertexDegree(2);
         objGrafo.vertexes = [...graph.vertexes];
-        objGrafo.vertexDegrees =  await graph.printVerticesDegrees();
-
         objGrafo.mediumDegree = await graph.mediumDegree();
         objGrafo.graphDensity = await graph.graphDensity();
-        objGrafo.avGroupCoef = await graph.averageGroupingCoefficient();
-        // objGrafo.neighbours = graph.qtdNeighbours(5);
-        objGrafo.printAdjList = await graph.printAdjList();
-        // objGrafo.numCompConexas = await graphApi.numCompConexas(graph);
-       
+
+        // metodos do graphUtils
+        objGrafo.avGroupCoef = await graphUtils.averageGroupingCoefficient(graph);
+        objGrafo.printAdjList = await graphUtils.printAdjList(graph);
+        objGrafo.vertexDegrees =  await graphUtils.printVerticesDegrees(graph);
+        objGrafo.numCompConexas = await graphUtils.numCompConexas(graph);
+        objGrafo.averageEFEC = await graphUtils.averageEffectiveEccentricity(graph);
+        objGrafo.effectiveDiameter = await graphUtils.effectiveDiameter(graph);
+        objGrafo.effectiveRadius = await graphUtils.effectiveRadius(graph);
+        objGrafo.averageCentrality = await graphUtils.averageCentrality(graph);
+        objGrafo.centralVerticesPercentage = await graphUtils.centralVerticesPercentage(graph);
+
 
         //OBJETO RESPOSTA DA REQUISICAO
         objGrafo = {

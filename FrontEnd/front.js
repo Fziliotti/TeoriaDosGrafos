@@ -104,6 +104,26 @@ function mostrarInfosDoGrafo(r) {
         <div>
             O número de componentes conexas é ${r.grafo.numCompConexas}.
         </div>
+
+        <div>
+            A Excentricidade efetiva média é ${r.grafo.averageEFEC}.
+        </div>
+
+         <div>
+            O Diâmetro efetivo é ${r.grafo.effectiveDiameter}.
+        </div>
+
+        <div>
+            O Raio efetivo é ${r.grafo.effectiveRadius}.
+        </div>
+
+        <div>
+            A Centralidade média é ${r.grafo.averageCentrality}.
+        </div>
+
+        <div>
+            O Percentual de vértices centrais é ${r.grafo.centralVerticesPercentage}%.
+        </div>
   `
 
 }

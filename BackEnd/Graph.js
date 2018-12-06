@@ -8,32 +8,6 @@ class Graph {
         })
     }
 
-    printAdjList() {
-        var texto = ""
-        this.edges.forEach((valor, chave) => {
-            var valores = [...valor].join(', ')
-            texto += `${chave} => ${valores} <br>`
-        })
-        return texto
-    }
-
-    printVerticesDegrees() {
-        var result = "" //Sera printado no frontEnd
-
-        var arrayVertexDegress = [...this.vertexes].map(elem => {
-            return {
-                index: elem,
-                grau: this.vertexDegree(elem)
-            }
-        })
-
-        arrayVertexDegress.forEach((vertex) => {
-            result += `[${vertex.index}]: grau ${vertex.grau}. <br>`
-        })
-        return result
-    }
-    
-
     insertEdge(n1, n2) {
         if (!this.existEdge(n1, n2)) {
             console.log("foi inserido " + n1 + " =>" + n2)
@@ -53,17 +27,14 @@ class Graph {
         return this.edges.get(n1).has(n2)
     }
 
-    vertexes() {
-        return Array.from(this.edges.keys())
-    }
-
     totalVertexes() {
         return this.vertexes.size
     }
 
     vertexDegree(vertex) {
         if (!this.vertexes.has(vertex))
-            throw new Error("Vertice não existente no conjunto de vertices do grafo")
+            throw new Error("Vertice "+ vertex + " não existente no conjunto de vertices do grafo")
+
         // como vertexes eh um Set, ele nao aceita usar reduce,logo temos que transformar o set para array
         // no reduce o primeiro parametro é a funcao e o segundo sera o valor inicial do acumulador
         return [...this.vertexes].reduce((b, a) => b + (this.existEdge(vertex, a) ? 1 : 0), 0)
@@ -123,15 +94,13 @@ class Graph {
         return parseFloat(coef)
     }
 
-    averageGroupingCoefficient() {
-        let totalCoeficient = 0
-        this.vertexes.forEach(vertex => {
-            totalCoeficient += this.groupingCoefficient(vertex)
-        })
-        return (parseFloat(totalCoeficient) / this.totalVertexes()).toFixed(2)
-    }
-
-
+    // averageGroupingCoefficient() {
+    //     let totalCoeficient = 0
+    //     this.vertexes.forEach(vertex => {
+    //         totalCoeficient += this.groupingCoefficient(vertex)
+    //     })
+    //     return (parseFloat(totalCoeficient) / this.totalVertexes()).toFixed(2)
+    // }
 
 
     isExtremeVertice(vertex) {
@@ -142,12 +111,7 @@ class Graph {
     }
 
     extremesPercentage() {
-        let totalExtremeVertices = 0
-        this.vertexes.forEach(vertex => {
-            if (this.isExtremeVertice(vertex))
-                totalExtremeVertices++
-        })
-        return totalExtremeVertices / this.totalVertexes()
+        return [...this.vertexes].reduce((b, a) => b + (this.isExtremeVertice(vertex) ? 1 : 0), 0)
     }
 
 }
