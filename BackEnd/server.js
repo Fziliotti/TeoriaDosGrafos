@@ -56,6 +56,7 @@ async function leGrafo(req, res) {
         objGrafo.numCompConexas = await graphApi.numCompConexas(graph);
         objGrafo.avEfecEcce = await graphApi.averageEffectiveEccentricity(graph);
         objGrafo.efecctiveDiameter = await graphApi.effectiveDiameter(graph);
+        objGrafo.efecctiveRadius = await graphApi.effectiveRadius(graph);
         
 
 

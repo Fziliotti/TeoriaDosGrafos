@@ -162,6 +162,19 @@ function numCompConexas(graph){
 
     }
 
+    function effectiveRadius(graph){
+        let minAll=Infinity
+        graph.vertexes.forEach(vertex => {
+            let max = 0
+            dijkstra(graph,vertex).forEach(path => {
+                if(path>max) max = path
+            })
+            if (max<minAll) minAll = max
+        })
+        return minAll
+
+    }
+
 
 module.exports = {
     parseFile,
@@ -172,5 +185,6 @@ module.exports = {
     dijkstra,
     bestPath,
     averageEffectiveEccentricity,
-    effectiveDiameter
+    effectiveDiameter,
+    effectiveRadius
 }

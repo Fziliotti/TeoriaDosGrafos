@@ -112,6 +112,10 @@ function mostrarInfosDoGrafo(r) {
          <div>
             O Diâmetro efetivo é ${r.grafo.efecctiveDiameter}.
         </div>
+
+        <div>
+            O Raio efetivo é ${r.grafo.efecctiveRadius}.
+        </div>
   `
 
 }
