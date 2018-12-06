@@ -104,6 +104,10 @@ function mostrarInfosDoGrafo(r) {
         <div>
             O número de componentes conexas é ${r.grafo.numCompConexas}.
         </div>
+
+        <div>
+            A Excentricidade efetiva média é ${r.grafo.avEfecEcce}.
+        </div>
   `
 
 }

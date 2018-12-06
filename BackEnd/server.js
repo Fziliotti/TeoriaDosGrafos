@@ -54,6 +54,9 @@ async function leGrafo(req, res) {
         // objGrafo.neighbours = graph.qtdNeighbours(5);
         objGrafo.printAdjList = await graph.printAdjList();
         objGrafo.numCompConexas = await graphApi.numCompConexas(graph);
+        objGrafo.avEfecEcce = await graphApi.averageEffectiveEccentricity(graph);
+        
+
 
        
 

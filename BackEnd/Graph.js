@@ -129,8 +129,6 @@ class Graph {
     }
 
 
-
-
     isExtremeVertice(vertex) {
         if (!this.vertexes.has(vertex))
             throw new Error("Vertice não existente no conjunto de vertices do grafo")
