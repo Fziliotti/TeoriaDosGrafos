@@ -9,26 +9,30 @@ class Graph {
     }
 
     printAdjList() {
-            var texto = "";
-            this.edges.forEach((valor, chave) => {
-                var valores = [...valor].join(', ')
-                texto += `${chave} => ${valores} <br>`
-            })
-            return texto;
+        var texto = ""
+        this.edges.forEach((valor, chave) => {
+            var valores = [...valor].join(', ')
+            texto += `${chave} => ${valores} <br>`
+        })
+        return texto
     }
 
     printVerticesDegrees() {
-            var result = ""; //Sera printado no frontEnd
+        var result = "" //Sera printado no frontEnd
 
-            var arrayVertexDegress =  [...this.vertexes].map( elem => {
-                return {index: elem, grau : this.vertexDegree(elem)}
-            })
+        var arrayVertexDegress = [...this.vertexes].map(elem => {
+            return {
+                index: elem,
+                grau: this.vertexDegree(elem)
+            }
+        })
 
-            arrayVertexDegress.forEach((vertex) => {
-                result += `[${vertex.index}]: grau ${vertex.grau}. <br>` 
-            })
-            return result;
+        arrayVertexDegress.forEach((vertex) => {
+            result += `[${vertex.index}]: grau ${vertex.grau}. <br>`
+        })
+        return result
     }
+    
 
     insertEdge(n1, n2) {
         if (!this.existEdge(n1, n2)) {

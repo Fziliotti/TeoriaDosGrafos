@@ -44,9 +44,9 @@ async function leGrafo(req, res) {
         // ATRIBUTOS DO OBJETO RETORNADO COMO RESPOSTA
         objGrafo.arquivo = await path.substring(6);
         objGrafo.totalVertexes = await graph.totalVertexes();
-        objGrafo.vertexDegree = graph.vertexDegree(2);
-
-        objGrafo.vertexDegrees =  graph.printVerticesDegrees();
+        objGrafo.vertexDegree =  await graph.vertexDegree(2);
+        objGrafo.vertexes = [...graph.vertexes];
+        objGrafo.vertexDegrees =  await graph.printVerticesDegrees();
 
         objGrafo.mediumDegree = await graph.mediumDegree();
         objGrafo.graphDensity = await graph.graphDensity();
