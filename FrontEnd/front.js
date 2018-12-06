@@ -120,6 +120,10 @@ function mostrarInfosDoGrafo(r) {
         <div>
             A Centralidade média é ${r.grafo.averageCentrality}.
         </div>
+
+        <div>
+            O Percentual de vértices centrais é ${r.grafo.centralVerticesPercentage}%.
+        </div>
   `
 
 }

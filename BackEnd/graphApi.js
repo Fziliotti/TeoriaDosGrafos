@@ -128,7 +128,6 @@ function numCompConexas(graph){
         
         let resultDistances = new Array()
         distances.forEach(elem => resultDistances.push(elem))
-        console.log("distances: " + resultDistances)
         return resultDistances
     }
 
@@ -185,6 +184,19 @@ function numCompConexas(graph){
         return (sumCentralities/numVertices).toFixed(2)
     }
 
+    function centralVerticesPercentage(graph){
+        let count = 0
+        graph.vertexes.forEach(vertex => {
+            let max = 0
+            dijkstra(graph,vertex).forEach(path => {
+                if(path>max) max = path
+            })
+            if(max == effectiveRadius(graph))
+                count++
+        })
+        return (count/graph.totalVertexes())*100
+    }
+
 
 module.exports = {
     parseFile,
@@ -197,5 +209,6 @@ module.exports = {
     averageEffectiveEccentricity,
     effectiveDiameter,
     effectiveRadius,
-    averageCentrality
+    averageCentrality,
+    centralVerticesPercentage
 }
