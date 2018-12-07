@@ -7,7 +7,7 @@ const PriorityQueue = require('./priority-queue/PriorityQueue')
  * @param {Graph} graph 
  * @returns {String} 
  */
-function printAdjList(graph) {
+function printAdjList(graph){
     var texto = ""
     graph.edges.forEach((valor, chave) => {
         var valores = [...valor].join(', ')

@@ -54,7 +54,8 @@ async function leGrafo(req, res) {
         objGrafo.printAdjList = await graphUtils.printAdjList(graph);
         objGrafo.vertexDegrees =  await graphUtils.printVerticesDegrees(graph);
         objGrafo.numCompConexas = await graphUtils.numCompConexas(graph);
-        objGrafo.averageEFEC = await graphUtils.averageEffectiveEccentricity(graph);
+        
+        // objGrafo.averageEFEC = await graphUtils.averageEffectiveEccentricity(graph);
         // objGrafo.effectiveDiameter = await graphUtils.effectiveDiameter(graph);
         // objGrafo.effectiveRadius = await graphUtils.effectiveRadius(graph);
         // objGrafo.averageCentrality = await graphUtils.averageCentrality(graph);
