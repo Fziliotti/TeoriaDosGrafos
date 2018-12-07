@@ -3,6 +3,7 @@ class Graph {
         this.numEdges = 0 //arestas
         this.vertexes = new Set() // vertices que nao se repetem
         this.edges = new Map() //lista de adjacencias
+        // criação da lista de adjacencias
         vertexes.map(vertex => {
             this.edges.set(vertex, new Set())
         })
@@ -25,6 +26,10 @@ class Graph {
     // Verifica se existe determinado vertice
     existEdge(n1, n2) {
         return this.edges.get(n1).has(n2)
+    }
+
+    listaVertexes(){
+        return [...this.vertexes]
     }
 
     totalVertexes() {

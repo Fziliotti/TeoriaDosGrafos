@@ -160,7 +160,7 @@ function dijkstra(graph, startVertex) {
  * @param {Graph} graph
  * @param {Number} startVertex
  * @param {Number} finishVertex
- * @returns {Array} Menor distancia entre dois vertices
+ * @returns {Number} Menor distancia entre dois vertices
  */
 function bestPath(graph, startVertex, finishVertex) {
     return dijkstra(graph, startVertex)[finishVertex - 1]

@@ -22,7 +22,7 @@ function arrayInfo(data) {
         vertexes.add(edge[1])
     })
     return {
-        vertexes: Array.from(vertexes),
+        vertexes: Array.from(vertexes)
         // biggest: Array.from(vertexes).reduce((a, b) => Math.max(a, b)),
         // lowest: Array.from(vertexes).reduce((a, b) => Math.min(a, b))
     }
@@ -30,10 +30,15 @@ function arrayInfo(data) {
 
 // para nao ter que reemitir o erro, foi colocado a sintaxe async e await
 async function parseGraph(path) {
-    let data = await parseFile(path)
-    let graph = new Graph(arrayInfo(data).vertexes)
-    data.map(edge => graph.insertEdge(edge[0], edge[1]))
-    return graph
+    try{
+        let data = await parseFile(path)
+        let graph = new Graph(arrayInfo(data).vertexes)
+        data.map(edge => graph.insertEdge(edge[0], edge[1]))
+        return graph
+    }
+    catch(err){
+        console.log("Erro ao criar grafo apartir do arquivo!" + err)
+    }
 }
 
 function compareFileGraph(path, graph) {

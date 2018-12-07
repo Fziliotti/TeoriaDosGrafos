@@ -43,9 +43,9 @@ async function leGrafo(req, res) {
         delete objGrafo._edges;
 
         // ATRIBUTOS DO OBJETO RETORNADO COMO RESPOSTA
-        objGrafo.arquivo = await path.substring(9);
+        objGrafo.arquivo = path.substring(9);
         objGrafo.totalVertexes = await graph.totalVertexes();
-        objGrafo.vertexes = [...graph.vertexes];
+        objGrafo.vertexes = await graph.listaVertexes();
         objGrafo.mediumDegree = await graph.mediumDegree();
         objGrafo.graphDensity = await graph.graphDensity();
 
@@ -55,10 +55,10 @@ async function leGrafo(req, res) {
         objGrafo.vertexDegrees =  await graphUtils.printVerticesDegrees(graph);
         objGrafo.numCompConexas = await graphUtils.numCompConexas(graph);
         objGrafo.averageEFEC = await graphUtils.averageEffectiveEccentricity(graph);
-        objGrafo.effectiveDiameter = await graphUtils.effectiveDiameter(graph);
-        objGrafo.effectiveRadius = await graphUtils.effectiveRadius(graph);
-        objGrafo.averageCentrality = await graphUtils.averageCentrality(graph);
-        objGrafo.centralVerticesPercentage = await graphUtils.centralVerticesPercentage(graph);
+        // objGrafo.effectiveDiameter = await graphUtils.effectiveDiameter(graph);
+        // objGrafo.effectiveRadius = await graphUtils.effectiveRadius(graph);
+        // objGrafo.averageCentrality = await graphUtils.averageCentrality(graph);
+        // objGrafo.centralVerticesPercentage = await graphUtils.centralVerticesPercentage(graph);
 
 
         //OBJETO RESPOSTA DA REQUISICAO
