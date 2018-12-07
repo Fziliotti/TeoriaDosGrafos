@@ -185,7 +185,6 @@ function averageEffectiveEccentricity(graph) {
     console.log("Excentricidade Efetiva Média")
     let sum = 0
     graph.vertexes.forEach(vertex => {
-
         var resultDj = dijkstra(graph, vertex);
         var max = Math.max(...resultDj);
         sum += max
@@ -208,7 +207,6 @@ function effectiveDiameter(graph) {
     return maxAll
 
 }
-
 
 /**
  * Essa função retorna o Raio Efetivo do grafo
@@ -236,13 +234,12 @@ function averageCentrality(graph) {
     let numVertices = graph.totalVertexes() - 1
 
     graph.vertexes.forEach(vertex => {
-        let sumDist = 0
-        dijkstra(graph, vertex).forEach(path => sumDist += path)
+        let sumDist = dijkstra(graph,vertex).reduce((ac,atual) =>  ac += atual, 0)
         sumCentralities += numVertices / (sumDist / numVertices)
     })
-
     return (sumCentralities / numVertices).toFixed(2)
 }
+
 
 /**
  * Essa função retorna a porcentagem de vértices centrais do grafo
