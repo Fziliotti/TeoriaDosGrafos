@@ -12,6 +12,7 @@ class Graph {
     insertEdge(n1, n2) {
         if (!this.existEdge(n1, n2)) {
             console.log("foi inserido " + n1 + " =>" + n2)
+            
             //adiciona aresta nos dois sentidos
             this.edges.get(n1).add(n2)
             this.edges.get(n2).add(n1)
@@ -23,17 +24,18 @@ class Graph {
             return this //somente para poder encadear funcoes após usar esse metodo
         }
     }
-    // Verifica se existe determinado vertice
+
+    // Verifica se existe determinado aresta
     existEdge(n1, n2) {
         return this.edges.get(n1).has(n2)
     }
 
     listaVertexes(){
-        return [...this.vertexes]
+        return [...this.vertexes] // transforma Set em Array
     }
 
     totalVertexes() {
-        return this.vertexes.size
+        return this.vertexes.size // tamanho de Set é size e não lenght como array
     }
 
     vertexDegree(vertex) {
@@ -49,8 +51,10 @@ class Graph {
         let medium = 0
         console.log("Medium Degree")
         this.vertexes.forEach(vertex => medium += this.vertexDegree(vertex))
-        return (medium / this.vertexes.size).toFixed(2)
+
+        return (medium / this.vertexes.size).toFixed(5)
     }
+
 
     graphDensity() {
         console.log("Graph Density")
@@ -64,7 +68,6 @@ class Graph {
         if (!this.vertexes.has(vertex))
             throw new Error("Vertice não existente no conjunto de vertices do grafo")
         return this.edges.get(vertex)
-
     }
 
     qtdNeighbours(vertex) {
@@ -100,15 +103,6 @@ class Graph {
         }
         return parseFloat(coef)
     }
-
-    // averageGroupingCoefficient() {
-    //     let totalCoeficient = 0
-    //     this.vertexes.forEach(vertex => {
-    //         totalCoeficient += this.groupingCoefficient(vertex)
-    //     })
-    //     return (parseFloat(totalCoeficient) / this.totalVertexes()).toFixed(2)
-    // }
-
 
     isExtremeVertice(vertex) {
         if (!this.vertexes.has(vertex))

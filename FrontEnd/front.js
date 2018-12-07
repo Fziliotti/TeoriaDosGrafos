@@ -82,14 +82,6 @@ function mostrarInfosDoGrafo(r) {
         </div>
 
         <div>
-            A lista de adjacências do grafo é: <br> ${r.grafo.printAdjList} 
-        </div>
-
-        <div>
-            Os graus dos vértices são: <br> ${r.grafo.vertexDegrees}
-        </div>
-
-        <div>
             O grau médio do grafo é ${r.grafo.mediumDegree}.
         </div>
 
@@ -127,3 +119,12 @@ function mostrarInfosDoGrafo(r) {
   `
 
 }
+
+{/* <div>
+A lista de adjacências do grafo é: <br> ${r.grafo.printAdjList} 
+</div> */}
+
+
+// <div>
+// Os graus dos vértices são: <br> ${r.grafo.vertexDegrees}
+// </div>
