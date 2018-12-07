@@ -47,14 +47,16 @@ class Graph {
 
     mediumDegree() {
         let medium = 0
+        console.log("Medium Degree")
         this.vertexes.forEach(vertex => medium += this.vertexDegree(vertex))
-        return Math.floor(medium / this.vertexes.size)
+        return (medium / this.vertexes.size).toFixed(2)
     }
 
     graphDensity() {
+        console.log("Graph Density")
         let numVertices = this.totalVertexes()
         let numArestas = this.numEdges
-        return Math.floor(2 * numArestas / numVertices * (numVertices - 1))
+        return (2 * numArestas / (numVertices * (numVertices - 1))).toFixed(5)
     }
 
     // retorna os vizinhos de determinado vertice

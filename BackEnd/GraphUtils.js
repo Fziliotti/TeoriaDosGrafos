@@ -22,6 +22,7 @@ function printAdjList(graph) {
  * @returns {String} 
  */
 function printVerticesDegrees(graph) {
+    console.log("Vertices Degrees")
     var result = "" //Sera printado no frontEnd
 
     var arrayVertexDegress = [...graph.vertexes].map(elem => {
@@ -44,6 +45,7 @@ function printVerticesDegrees(graph) {
  * @returns {Number} 
  */
 function averageGroupingCoefficient(graph) {
+    console.log("Average Grouping Coefficient")
     let totalCoeficient = 0
     graph.vertexes.forEach(vertex => {
         totalCoeficient += graph.groupingCoefficient(vertex)
@@ -90,17 +92,22 @@ function bfs(graph, rootVertex, visitedVertexes) {
  * @returns {Number} 
  */
 function numCompConexas(graph) {
+    console.log("Numero de componentes conexas")
     let rootQueue = new Set(graph.vertexes)
     let quantity = 0
     let rootVisited = []
+    let greaterComponent = []
     rootQueue.forEach(vertex => {
         let visited = []
         if (!rootVisited.includes(vertex)) {
             ++quantity
             bfs(graph, vertex, visited)
             visited.forEach(elem => rootVisited.push(elem))
+            if(greaterComponent.length<visited.length)
+                greaterComponent = [...visited]
         }
     })
+    graph.vertexes =  new Set(greaterComponent)
     return quantity
 }
 
@@ -173,20 +180,18 @@ function bestPath(graph, startVertex, finishVertex) {
  * @param {Graph} graph
  * @returns {Number} Menor distancia entre dois vertices
  */
+
 function averageEffectiveEccentricity(graph) {
+    console.log("Excentricidade Efetiva Média")
     let sum = 0
     graph.vertexes.forEach(vertex => {
-        let max = 0
-        dijkstra(graph, vertex).forEach(path => {
-            if (path > max) max = path
-        })
+        var resultDj = dijkstra(graph, vertex);
+        var max = Math.max(...resultDj);
         sum += max
     })
 
     return sum / graph.totalVertexes()
 }
-
-
 /**
  * Essa função retorna o Diâmetro Efetivo Médio do grafo
  * @param {Graph} graph
