@@ -7,7 +7,7 @@ const PriorityQueue = require('./priority-queue/PriorityQueue')
  * @param {Graph} graph 
  * @returns {String} 
  */
-function printAdjList(graph){
+function printAdjList(graph) {
     var texto = ""
     graph.edges.forEach((valor, chave) => {
         var valores = [...valor].join(', ')
@@ -48,7 +48,7 @@ function averageGroupingCoefficient(graph) {
     graph.vertexes.forEach(vertex => {
         totalCoeficient += graph.groupingCoefficient(vertex)
     })
-    return (parseFloat(totalCoeficient) / graph.totalVertexes()).toFixed(2)
+    return (parseFloat(totalCoeficient) / graph.totalVertexes()).toFixed(5)
 }
 
 
@@ -83,7 +83,6 @@ function bfs(graph, rootVertex, visitedVertexes) {
     }
 }
 
-
 /**
  * Essa função retorna o número de componentes conexas do grafo
  * @param {Graph} graph
@@ -110,6 +109,7 @@ function numCompConexas(graph) {
  * @param {Number} startVertex
  * @returns {Array} 
  */
+
 function dijkstra(graph, startVertex) {
     const distances = []
     const visitedVertices = []
@@ -176,15 +176,14 @@ function bestPath(graph, startVertex, finishVertex) {
 function averageEffectiveEccentricity(graph) {
     let sum = 0
     graph.vertexes.forEach(vertex => {
-        let max = 0
-        dijkstra(graph, vertex).forEach(path => {
-            if (path > max) max = path
-        })
+        var resultDijkstra = dijkstra(graph, vertex)
+        var max = Math.max(...resultDijkstra)
         sum += max
     })
-
     return sum / graph.totalVertexes()
 }
+
+
 
 
 /**
@@ -195,10 +194,8 @@ function averageEffectiveEccentricity(graph) {
 function effectiveDiameter(graph) {
     let maxAll = 0
     graph.vertexes.forEach(vertex => {
-        let max = 0
-        dijkstra(graph, vertex).forEach(path => {
-            if (path > max) max = path
-        })
+        var resultDijkstra = dijkstra(graph, vertex)
+        var max = Math.max(...resultDijkstra)
         if (max > maxAll) maxAll = max
     })
     return maxAll
@@ -214,10 +211,8 @@ function effectiveDiameter(graph) {
 function effectiveRadius(graph) {
     let minAll = Infinity
     graph.vertexes.forEach(vertex => {
-        let max = 0
-        dijkstra(graph, vertex).forEach(path => {
-            if (path > max) max = path
-        })
+        var resultDijkstra = dijkstra(graph, vertex)
+        var max = Math.max(...resultDijkstra)
         if (max < minAll) minAll = max
     })
     return minAll
@@ -238,7 +233,7 @@ function averageCentrality(graph) {
         dijkstra(graph, vertex).forEach(path => sumDist += path)
         sumCentralities += numVertices / (sumDist / numVertices)
     })
-    
+
     return (sumCentralities / numVertices).toFixed(2)
 }
 
@@ -250,10 +245,8 @@ function averageCentrality(graph) {
 function centralVerticesPercentage(graph) {
     let count = 0
     graph.vertexes.forEach(vertex => {
-        let max = 0
-        dijkstra(graph, vertex).forEach(path => {
-            if (path > max) max = path
-        })
+        var resultDijkstra = dijkstra(graph, vertex)
+        var max = Math.max(...resultDijkstra)
         if (max == effectiveRadius(graph))
             count++
     })
@@ -274,5 +267,5 @@ module.exports = {
     effectiveRadius,
     averageCentrality,
     centralVerticesPercentage,
- 
+
 }

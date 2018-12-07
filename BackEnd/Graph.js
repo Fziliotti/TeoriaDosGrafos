@@ -12,6 +12,7 @@ class Graph {
     insertEdge(n1, n2) {
         if (!this.existEdge(n1, n2)) {
             console.log("foi inserido " + n1 + " =>" + n2)
+            
             //adiciona aresta nos dois sentidos
             this.edges.get(n1).add(n2)
             this.edges.get(n2).add(n1)
@@ -23,6 +24,7 @@ class Graph {
             return this //somente para poder encadear funcoes após usar esse metodo
         }
     }
+
     // Verifica se existe determinado aresta
     existEdge(n1, n2) {
         return this.edges.get(n1).has(n2)
@@ -48,13 +50,14 @@ class Graph {
     mediumDegree() {
         let medium = 0
         this.vertexes.forEach(vertex => medium += this.vertexDegree(vertex))
-        return Math.floor(medium / this.vertexes.size)
+        return (medium / this.vertexes.size).toFixed(5)
     }
+
 
     graphDensity() {
         let numVertices = this.totalVertexes()
         let numArestas = this.numEdges
-        return Math.floor(2 * numArestas / (numVertices * (numVertices - 1)))
+        return (2 * numArestas / (numVertices * (numVertices - 1))).toFixed(5)
     }
 
     // retorna os vizinhos de determinado vertice
