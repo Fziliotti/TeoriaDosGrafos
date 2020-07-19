@@ -1,4 +1,4 @@
-# TeoriaDosGrafos
+# Análise de Grafos - Teoria dos grafos
 
 Passos para rodar o projeto:
 
